@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LoginRoleDBModelStoreContainer" CdmEntityContainer="LoginRoleDBEntities">
+    <EntitySetMapping Name="Korisnik">
+      <EntityTypeMapping TypeName="LoginRoleDBModel.Korisnik">
+        <MappingFragment StoreEntitySet="Korisnik">
+          <ScalarProperty Name="LoginIme" ColumnName="LoginIme" />
+          <ScalarProperty Name="Pol" ColumnName="Pol" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KorisnikRole">
+      <EntityTypeMapping TypeName="LoginRoleDBModel.KorisnikRole">
+        <MappingFragment StoreEntitySet="KorisnikRole">
+          <ScalarProperty Name="KorisnikRoleID" ColumnName="KorisnikRoleID" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="RoleVrsteID" ColumnName="RoleVrsteID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleVrste">
+      <EntityTypeMapping TypeName="LoginRoleDBModel.RoleVrste">
+        <MappingFragment StoreEntitySet="RoleVrste">
+          <ScalarProperty Name="RoleVrsteID" ColumnName="RoleVrsteID" />
+          <ScalarProperty Name="RoleIme" ColumnName="RoleIme" />
+          <ScalarProperty Name="RoleOpis" ColumnName="RoleOpis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

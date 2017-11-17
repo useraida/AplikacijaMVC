@@ -1,0 +1,63 @@
+﻿@model IEnumerable<HotelApp.Models.CheckOut>
+
+@{
+    ViewBag.Title = "Check out";
+}
+
+<h2>Check out</h2>
+
+<p>
+    <button type="button" class="bojaCheckOut" onclick="location.href='@Url.Action("Create", "CheckOuts")'">Dodajte novi check out</button>
+</p>
+<table class="table udalji">
+    <tr>
+        <th>
+            Datum odjave
+        </th>
+        <th>
+            Dodatni trošak
+        </th>
+        <th>
+            Ukupna cijena
+        </th>
+        <th>
+            Način plaćanja
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatumOdjave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DodatniTrosak)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UkupnaCijena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NacinPlacanja)
+        </td>
+        <td>
+            <button type="button" class="btn btn-default bojaCheckOut" onclick="location.href='@Url.Action("Edit", new { id=item.CheckOutID })'">Uredi</button>
+            <button type="button" class="btn btn-default bojaCheckOut" onclick="location.href='@Url.Action("Details", new { id=item.CheckOutID })'">Detalji</button>
+            <button type="button" class="btn btn-default bojaCheckOut" onclick="location.href='@Url.Action("Delete", new { id=item.CheckOutID })'">Izbriši</button>
+        </td>
+    </tr>
+}
+
+</table>
+
+<style type="text/css">
+    .bojaCheckOut {
+        background: #B22222;
+        color: #fff;
+        padding: 6px 12px 6px 12px;
+    }
+
+    .udalji {
+        margin-top: 20px;
+    }
+</style>

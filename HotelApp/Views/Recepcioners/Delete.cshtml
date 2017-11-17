@@ -1,0 +1,63 @@
+﻿@model HotelApp.Models.Recepcioner
+
+@{
+    ViewBag.Title = "Izbriši";
+}
+
+<h2>Izbriši</h2>
+
+<h3>Da li ste sigurni da želite izbrisati ovog recepcionera?</h3>
+<div>
+    <h4>Recepcioner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ImeRecepcionera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImeRecepcionera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrezimeRecepcionera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrezimeRecepcionera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Izbriši" class="btn btn-default boja" /> |
+            <button type="button" class="btn btn-default boja" onclick="location.href='@Url.Action("Index", "Recepcioners")'">Vrati se nazad</button>
+        </div>
+    }
+</div>
+
+<style type="text/css">
+    .boja {
+        background-color: #B22222;
+        color: white;
+    }
+</style>

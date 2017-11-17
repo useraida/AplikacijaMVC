@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <!--CSS files-->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap-image-gallery.min.css">
+
+    <!--Javascript files-->
+    @Scripts.Render("~/bundles/jquery")
+    <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+    <script src="~/Scripts/bootstrap-image-gallery.min.js"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Hotel", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" style="float: none;">
+                    <li>@Html.ActionLink("Početna", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Gosti hotela", "Index", "Gosts")</li>
+                    <li>@Html.ActionLink("Za uposlenike hotela", "Index", "DnevniIzvjestajs")</li>
+                    <li style="float:right;">@Html.ActionLink("Odjavite se", "SignOut", "Account")</li>
+                    <li style="float:right;">@Html.ActionLink("Ulogujte se", "LogIn", "Account")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - The young minds</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<style type="text/css">
+    .naKraj {
+        margin-right: 600px;
+    }
+
+    .boja {
+        background: #B22222;
+    }
+</style>

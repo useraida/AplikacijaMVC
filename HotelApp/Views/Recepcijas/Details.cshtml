@@ -1,0 +1,48 @@
+﻿@model HotelApp.Models.Recepcija
+
+@{
+    ViewBag.Title = "Detalji";
+}
+
+<h2>Detalji</h2>
+
+<div>
+    <h4>Recepcija</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BrojRezervacija)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojRezervacija)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UkupnaZarada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UkupnaZarada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DnevniIzvjestaj.DnevniIzvjestajID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DnevniIzvjestaj.DnevniIzvjestajID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button type="button" class="btn btn-default bojaRecepcija" onclick="location.href='@Url.Action("Index", "Recepcijas")'">Vrati se nazad</button>
+</p>
+
+<style type="text/css">
+    .bojaRecepcija {
+        background-color: #B22222;
+        color: white;
+    }
+</style>

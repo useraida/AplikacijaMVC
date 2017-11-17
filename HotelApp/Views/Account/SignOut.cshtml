@@ -1,0 +1,8 @@
+﻿
+@{
+    ViewBag.Title = "SignOut";
+}
+
+<h3>Vi <b>@Context.User.Identity.Name </b> ste se odjavili. Ukoliko želite ponovo da se prijavite to možete učiniti na sljedećem linku: </h3> 
+<b>@Html.ActionLink("Prijavite se", "LogIn", "Account")</b>
+ 

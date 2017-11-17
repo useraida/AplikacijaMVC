@@ -1,0 +1,51 @@
+﻿@model IEnumerable<HotelApp.Models.Zaduzenja>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Zaduženja</h2>
+
+<div>
+    <button type="button" class="bojaZaduzenje" onclick="location.href='@Url.Action("Create", "Zaduzenjas")'">Dodajte novo zaduženje</button>
+</div>
+<table class="table udalji">
+    <tr>
+        <th>
+            Vrsta zaduženja
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cijena)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VrstaZaduzenja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cijena)
+        </td>
+        <td>
+            <button type="button" class="btn btn-default bojaZaduzenje" onclick="location.href='@Url.Action("Edit", new { id=item.ZaduzenjaID })'">Uredi</button>
+            <button type="button" class="btn btn-default bojaZaduzenje" onclick="location.href='@Url.Action("Details", new { id=item.ZaduzenjaID })'">Detalji</button>
+            <button type="button" class="btn btn-default bojaZaduzenje" onclick="location.href='@Url.Action("Delete", new { id=item.ZaduzenjaID })'">Izbriši</button>
+        </td>
+    </tr>
+}
+
+</table>
+
+<style type="text/css">
+    .bojaZaduzenje {
+        background: #B22222;
+        color: #fff;
+        padding: 6px 12px 6px 12px;
+    }
+
+    .udalji {
+        margin-top: 20px;
+    }
+</style>

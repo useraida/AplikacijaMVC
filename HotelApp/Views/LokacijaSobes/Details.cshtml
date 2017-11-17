@@ -1,0 +1,48 @@
+﻿@model HotelApp.Models.LokacijaSobe
+
+@{
+    ViewBag.Title = "Detalji";
+}
+
+<h2>Detalji</h2>
+
+<div>
+    <h4>Lokacija sobe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SpratSobe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpratSobe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrojSobe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojSobe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Orijentacija)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Orijentacija)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button type="button" class="btn btn-default boja" onclick="location.href='@Url.Action("Index", "LokacijaSobes")'">Vrati se nazad</button>
+</p>
+
+<style type="text/css">
+    .boja{
+        background-color: #B22222;
+        color: white;
+    }
+</style>

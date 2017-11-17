@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Hotel App</h1>
+    <p class="lead">Ovdje možete registrovati sve goste.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>O nama </h2>
+        <p>
+            Hotel je ustanova namijenjena pružanju usluga najčešće kratkotrajnog smještaja i prehrane svojim gostima, korisnicima usluge. .
+        </p>
+        <button type="button" class="btn btn-default boja"  onclick= "location.href='@Url.Action("Index", "ONama")'">Saznaj više &raquo;</button>
+        <style type="text/css">
+            .boja {
+                background: #B22222;
+                color: #fff;
+                padding: 6px 12px 6px 12px;
+            }
+        </style>
+    </div>
+    <div class="col-md-4">
+        <h2>Kontaktirajte nas</h2>
+        <button type="button" class="btn btn-default boja" onclick="location.href='@Url.Action("Create", "Kontakt")'">Otvori formu za kontakt &raquo;</button>
+</div>
+    <div class="col-md-4">
+        <h2>Pogledajte slike našeg hotela</h2>
+        <button type="button" class="btn btn-default boja" onclick="location.href='@Url.Action("Index", "SlikeHome")'">Učitaj &raquo;</button>
+    </div>
+</div>

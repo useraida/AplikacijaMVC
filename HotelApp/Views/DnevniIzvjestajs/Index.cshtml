@@ -1,0 +1,84 @@
+﻿@model IEnumerable<HotelApp.Models.DnevniIzvjestaj>
+
+@{
+    ViewBag.Title = "Dnevni izvještaj";
+}
+
+<h2>Dnevni izvještaj</h2>
+
+<div>
+    <button type="button" class="boja" onclick="location.href='@Url.Action("Index", "Recepcioners")'">Recepcioner</button>
+    <button type="button" class="boja" onclick="location.href='@Url.Action("Index", "Recepcijas")'">Recepcija</button>
+    <button type="button" class="boja" onclick="location.href='@Url.Action("Index", "HotelTs")'">Hotel</button>
+
+</div>
+
+<style type="text/css">
+    .boja {
+        background: #B22222;
+        color: #fff;
+        padding: 6px 12px 6px 12px;
+        margin-top: 30px;
+    }
+    .noviIzvjestaj {
+        background: #B22222;
+        color: #fff;
+        padding: 6px 12px 6px 12px;
+        margin-top: 30px;
+    }
+    .udalji {
+        margin-top: 20px;
+    }
+
+    .bojaDnevniIzvjestaj {
+        background: #B22222;
+        color: #fff;
+        padding: 6px 12px 6px 12px;
+    }
+
+</style>
+
+<div>
+    <button type="button" class="noviIzvjestaj" onclick="location.href='@Url.Action("Create", "DnevniIzvjestajs")'">Dodajte novi izvještaj</button>
+</div>
+<table class="table udalji">
+    <tr>
+        <th>
+            Dnevni izvjestajID
+        </th>
+        <th>
+            Datum
+        </th>
+        <th>
+            RezervacijaID
+        </th>
+        <th>
+            Ime recepcionera
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DnevniIzvjestajID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rezervacija.RezervacijaID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Recepcioner.ImeRecepcionera)
+        </td>
+
+        <td>
+            <button type="button" class="btn btn-default bojaDnevniIzvjestaj" onclick="location.href='@Url.Action("Edit", new { id=item.DnevniIzvjestajID })'">Uredi</button>
+            <button type="button" class="btn btn-default bojaDnevniIzvjestaj" onclick="location.href='@Url.Action("Details", new { id=item.DnevniIzvjestajID })'">Detalji</button>
+            <button type="button" class="btn btn-default bojaDnevniIzvjestaj" onclick="location.href='@Url.Action("Delete", new { id=item.DnevniIzvjestajID })'">Izbriši</button>
+        </td>
+    </tr>
+}
+
+</table>

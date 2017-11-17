@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HotelModelStoreContainer" CdmEntityContainer="HotelEntities">
+    <EntitySetMapping Name="CheckIn">
+      <EntityTypeMapping TypeName="HotelModel.CheckIn">
+        <MappingFragment StoreEntitySet="CheckIn">
+          <ScalarProperty Name="CheckInID" ColumnName="CheckInID" />
+          <ScalarProperty Name="ZaduzenjaID" ColumnName="ZaduzenjaID" />
+          <ScalarProperty Name="DatumPrijave" ColumnName="DatumPrijave" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CheckOut">
+      <EntityTypeMapping TypeName="HotelModel.CheckOut">
+        <MappingFragment StoreEntitySet="CheckOut">
+          <ScalarProperty Name="CheckOutID" ColumnName="CheckOutID" />
+          <ScalarProperty Name="DatumOdjave" ColumnName="DatumOdjave" />
+          <ScalarProperty Name="DodatniTrosak" ColumnName="DodatniTrosak" />
+          <ScalarProperty Name="UkupnaCijena" ColumnName="UkupnaCijena" />
+          <ScalarProperty Name="NacinPlacanja" ColumnName="NacinPlacanja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DnevniIzvjestaj">
+      <EntityTypeMapping TypeName="HotelModel.DnevniIzvjestaj">
+        <MappingFragment StoreEntitySet="DnevniIzvjestaj">
+          <ScalarProperty Name="RecepcionerID" ColumnName="RecepcionerID" />
+          <ScalarProperty Name="DnevniIzvjestajID" ColumnName="DnevniIzvjestajID" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="RezervacijaID" ColumnName="RezervacijaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gost">
+      <EntityTypeMapping TypeName="HotelModel.Gost">
+        <MappingFragment StoreEntitySet="Gost">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="GostID" ColumnName="GostID" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="BrojTelefona" ColumnName="BrojTelefona" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Grad" ColumnName="Grad" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="BrojLicneKarte" ColumnName="BrojLicneKarte" />
+          <ScalarProperty Name="BrojPasosa" ColumnName="BrojPasosa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HotelT">
+      <EntityTypeMapping TypeName="HotelModel.HotelT">
+        <MappingFragment StoreEntitySet="HotelT">
+          <ScalarProperty Name="HotelTID" ColumnName="HotelTID" />
+          <ScalarProperty Name="NazivHotela" ColumnName="NazivHotela" />
+          <ScalarProperty Name="Vlasnik" ColumnName="Vlasnik" />
+          <ScalarProperty Name="RecepcijaID" ColumnName="RecepcijaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LokacijaSobe">
+      <EntityTypeMapping TypeName="HotelModel.LokacijaSobe">
+        <MappingFragment StoreEntitySet="LokacijaSobe">
+          <ScalarProperty Name="LokacijaSobeID" ColumnName="LokacijaSobeID" />
+          <ScalarProperty Name="SpratSobe" ColumnName="SpratSobe" />
+          <ScalarProperty Name="BrojSobe" ColumnName="BrojSobe" />
+          <ScalarProperty Name="Orijentacija" ColumnName="Orijentacija" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recepcija">
+      <EntityTypeMapping TypeName="HotelModel.Recepcija">
+        <MappingFragment StoreEntitySet="Recepcija">
+          <ScalarProperty Name="RecepcijaID" ColumnName="RecepcijaID" />
+          <ScalarProperty Name="DnevniIzvjestajID" ColumnName="DnevniIzvjestajID" />
+          <ScalarProperty Name="BrojRezervacija" ColumnName="BrojRezervacija" />
+          <ScalarProperty Name="UkupnaZarada" ColumnName="UkupnaZarada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rezervacija">
+      <EntityTypeMapping TypeName="HotelModel.Rezervacija">
+        <MappingFragment StoreEntitySet="Rezervacija">
+          <ScalarProperty Name="RezervacijaID" ColumnName="RezervacijaID" />
+          <ScalarProperty Name="GostID" ColumnName="GostID" />
+          <ScalarProperty Name="SobaID" ColumnName="SobaID" />
+          <ScalarProperty Name="CheckInID" ColumnName="CheckInID" />
+          <ScalarProperty Name="CheckOutID" ColumnName="CheckOutID" />
+          <ScalarProperty Name="BrojOdraslih" ColumnName="BrojOdraslih" />
+          <ScalarProperty Name="BrojDjece" ColumnName="BrojDjece" />
+          <ScalarProperty Name="TipPonude" ColumnName="TipPonude" />
+          <ScalarProperty Name="DodatneInformacije" ColumnName="DodatneInformacije" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Soba">
+      <EntityTypeMapping TypeName="HotelModel.Soba">
+        <MappingFragment StoreEntitySet="Soba">
+          <ScalarProperty Name="SobaID" ColumnName="SobaID" />
+          <ScalarProperty Name="TipSobe" ColumnName="TipSobe" />
+          <ScalarProperty Name="StatusSobe" ColumnName="StatusSobe" />
+          <ScalarProperty Name="LokacijaSobeID" ColumnName="LokacijaSobeID" />
+          <ScalarProperty Name="DodatneInformacije" ColumnName="DodatneInformacije" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zaduzenja">
+      <EntityTypeMapping TypeName="HotelModel.Zaduzenja">
+        <MappingFragment StoreEntitySet="Zaduzenja">
+          <ScalarProperty Name="ZaduzenjaID" ColumnName="ZaduzenjaID" />
+          <ScalarProperty Name="VrstaZaduzenja" ColumnName="VrstaZaduzenja" />
+          <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recepcioner">
+      <EntityTypeMapping TypeName="HotelModel.Recepcioner">
+        <MappingFragment StoreEntitySet="Recepcioner">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="PrezimeRecepcionera" ColumnName="PrezimeRecepcionera" />
+          <ScalarProperty Name="ImeRecepcionera" ColumnName="ImeRecepcionera" />
+          <ScalarProperty Name="RecepcionerID" ColumnName="RecepcionerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kontakt">
+      <EntityTypeMapping TypeName="HotelModel.Kontakt">
+        <MappingFragment StoreEntitySet="Kontakt">
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Poruka" ColumnName="Poruka" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="KontaktID" ColumnName="KontaktID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Slika">
+      <EntityTypeMapping TypeName="HotelModel.Slika">
+        <MappingFragment StoreEntitySet="Slika">
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="ThumbStaza" ColumnName="ThumbStaza" />
+          <ScalarProperty Name="SlikaStaza" ColumnName="SlikaStaza" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+          <ScalarProperty Name="SlikaID" ColumnName="SlikaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

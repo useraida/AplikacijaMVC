@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LoginRoleDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="KorisnikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginIme" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ime" Type="nchar" MaxLength="10" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pol" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="KorisnikRole">
+          <Key>
+            <PropertyRef Name="KorisnikRoleID" />
+          </Key>
+          <Property Name="KorisnikRoleID" Type="int" Nullable="false" />
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="RoleVrsteID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="RoleVrste">
+          <Key>
+            <PropertyRef Name="RoleVrsteID" />
+          </Key>
+          <Property Name="RoleVrsteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleIme" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleOpis" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__KorisnikR__Koris__2D27B809">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="KorisnikRole" Type="Self.KorisnikRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="KorisnikRole">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KorisnikR__RoleV__2E1BDC42">
+          <End Role="RoleVrste" Type="Self.RoleVrste" Multiplicity="1" />
+          <End Role="KorisnikRole" Type="Self.KorisnikRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleVrste">
+              <PropertyRef Name="RoleVrsteID" />
+            </Principal>
+            <Dependent Role="KorisnikRole">
+              <PropertyRef Name="RoleVrsteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LoginRoleDBModelStoreContainer">
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KorisnikRole" EntityType="Self.KorisnikRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleVrste" EntityType="Self.RoleVrste" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__KorisnikR__Koris__2D27B809" Association="Self.FK__KorisnikR__Koris__2D27B809">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="KorisnikRole" EntitySet="KorisnikRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KorisnikR__RoleV__2E1BDC42" Association="Self.FK__KorisnikR__RoleV__2E1BDC42">
+            <End Role="RoleVrste" EntitySet="RoleVrste" />
+            <End Role="KorisnikRole" EntitySet="KorisnikRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LoginRoleDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KorisnikRole" Relationship="Self.FK_KorisnikRole_Korisnik" FromRole="Korisnik" ToRole="KorisnikRole" />
+          <Property Name="Ime" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginIme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="KorisnikRole">
+          <Key>
+            <PropertyRef Name="KorisnikRoleID" />
+          </Key>
+          <Property Name="KorisnikRoleID" Type="Int32" Nullable="false" />
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+          <Property Name="RoleVrsteID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Korisnik" Relationship="Self.FK_KorisnikRole_Korisnik" FromRole="KorisnikRole" ToRole="Korisnik" />
+          <NavigationProperty Name="RoleVrste" Relationship="Self.FK_KorisnikRole_RoleVrste" FromRole="KorisnikRole" ToRole="RoleVrste" />
+        </EntityType>
+        <EntityType Name="RoleVrste">
+          <Key>
+            <PropertyRef Name="RoleVrsteID" />
+          </Key>
+          <Property Name="RoleVrsteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleIme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleOpis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KorisnikRole" Relationship="Self.FK_KorisnikRole_RoleVrste" FromRole="RoleVrste" ToRole="KorisnikRole" />
+        </EntityType>
+        <Association Name="FK_KorisnikRole_Korisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="KorisnikRole" Type="Self.KorisnikRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="KorisnikRole">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KorisnikRole_RoleVrste">
+          <End Role="RoleVrste" Type="Self.RoleVrste" Multiplicity="1" />
+          <End Role="KorisnikRole" Type="Self.KorisnikRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleVrste">
+              <PropertyRef Name="RoleVrsteID" />
+            </Principal>
+            <Dependent Role="KorisnikRole">
+              <PropertyRef Name="RoleVrsteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LoginRoleDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" />
+          <EntitySet Name="KorisnikRole" EntityType="Self.KorisnikRole" />
+          <EntitySet Name="RoleVrste" EntityType="Self.RoleVrste" />
+          <AssociationSet Name="FK_KorisnikRole_Korisnik" Association="Self.FK_KorisnikRole_Korisnik">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="KorisnikRole" EntitySet="KorisnikRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KorisnikRole_RoleVrste" Association="Self.FK_KorisnikRole_RoleVrste">
+            <End Role="RoleVrste" EntitySet="RoleVrste" />
+            <End Role="KorisnikRole" EntitySet="KorisnikRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LoginRoleDBModelStoreContainer" CdmEntityContainer="LoginRoleDBEntities">
+          <EntitySetMapping Name="Korisnik">
+            <EntityTypeMapping TypeName="LoginRoleDBModel.Korisnik">
+              <MappingFragment StoreEntitySet="Korisnik">
+                <ScalarProperty Name="LoginIme" ColumnName="LoginIme" />
+                <ScalarProperty Name="Pol" ColumnName="Pol" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KorisnikRole">
+            <EntityTypeMapping TypeName="LoginRoleDBModel.KorisnikRole">
+              <MappingFragment StoreEntitySet="KorisnikRole">
+                <ScalarProperty Name="KorisnikRoleID" ColumnName="KorisnikRoleID" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="RoleVrsteID" ColumnName="RoleVrsteID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleVrste">
+            <EntityTypeMapping TypeName="LoginRoleDBModel.RoleVrste">
+              <MappingFragment StoreEntitySet="RoleVrste">
+                <ScalarProperty Name="RoleVrsteID" ColumnName="RoleVrsteID" />
+                <ScalarProperty Name="RoleIme" ColumnName="RoleIme" />
+                <ScalarProperty Name="RoleOpis" ColumnName="RoleOpis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

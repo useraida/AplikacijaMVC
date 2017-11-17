@@ -1,0 +1,55 @@
+﻿@model IEnumerable<HotelApp.Models.CheckIn>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Check in</h2>
+
+<div>
+    <button type="button" class="noviCheckIn" onclick="location.href='@Url.Action("Create", "CheckIns")'">Dodajte novi check in</button>
+</div>
+<table class="table udaljiC">
+    <tr>
+        <th>
+            Datum prijave
+        </th>
+        <th>
+            Vrsta zaduženja
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatumPrijave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zaduzenja.VrstaZaduzenja)
+        </td>
+        <td>
+            <button type="button" class="btn btn-default bojaC" onclick="location.href='@Url.Action("Edit", new { id=item.CheckInID })'">Uredi</button>
+            <button type="button" class="btn btn-default bojaC" onclick="location.href='@Url.Action("Details", new { id=item.CheckInID })'">Detalji</button>
+            <button type="button" class="btn btn-default bojaC" onclick="location.href='@Url.Action("Delete", new { id=item.CheckInID })'">Izbriši</button>
+        </td>
+    </tr>
+}
+
+</table>
+
+<style type="text/css">
+    .noviCheckIn {
+        background: #B22222;
+        color: #fff;
+        padding: 6px 12px 6px 12px;
+        margin-top: 30px;
+    }
+    .udaljiC {
+        margin-top: 20px;
+    }
+    .bojaC {
+        background: #B22222;
+        color: #fff;
+    }
+</style>

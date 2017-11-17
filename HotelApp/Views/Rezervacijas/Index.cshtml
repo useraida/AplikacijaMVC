@@ -1,0 +1,87 @@
+﻿@model IEnumerable<HotelApp.Models.Rezervacija>
+
+@{
+    ViewBag.Title = "Rezervacija";
+}
+
+<h2>Rezervacija</h2>
+
+<p>
+    <button type="button" class="bojaRezervacija" onclick="location.href='@Url.Action("Create", "Rezervacijas")'">Dodajte novu rezervaciju</button>
+</p>
+<table class="table udalji">
+    <tr>
+        <th>
+            Broj odraslih
+        </th>
+        <th>
+            Broj djece
+        </th>
+        <th>
+            Tip ponude
+        </th>
+        <th>
+            Dodatne informacije
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckIn.CheckInID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckOut.CheckOutID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gost.Ime)
+        </th>
+        <th>
+            SobaID
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrojOdraslih)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrojDjece)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipPonude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DodatneInformacije)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckIn.CheckInID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckOut.CheckOutID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gost.Ime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soba.SobaID)
+        </td>
+        <td>
+            <button type="button" class="btn btn-default bojaRezervacija" onclick="location.href='@Url.Action("Edit", new { id=item.RezervacijaID })'">Uredi</button>
+            <button type="button" class="btn btn-default bojaRezervacija" onclick="location.href='@Url.Action("Details", new { id=item.RezervacijaID })'">Detalji</button>
+            <button type="button" class="btn btn-default bojaRezervacija" onclick="location.href='@Url.Action("Delete", new { id=item.RezervacijaID })'">Izbriši</button>
+        </td>
+    </tr>
+}
+
+</table>
+
+<style type="text/css">
+    .bojaRezervacija {
+        background: #B22222;
+        color: #fff;
+        padding: 6px 12px 6px 12px;
+    }
+
+    .udalji {
+        margin-top: 20px;
+    }
+</style>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<HotelApp.Models.Soba>
+
+@{
+    ViewBag.Title = "Soba";
+}
+
+<h2>Soba</h2>
+
+<p>
+    <button type="button" class="novaSoba" onclick="location.href='@Url.Action("Create", "Sobas")'">Dodajte novu sobu</button>
+</p>
+<table class="table udalji">
+    <tr>
+        <th>
+            Tip sobe
+        </th>
+        <th>
+            Status sobe
+        </th>
+        <th>
+            Dodatne informacije
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LokacijaSobe.Orijentacija)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipSobe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusSobe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DodatneInformacije)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LokacijaSobe.Orijentacija)
+        </td>
+        <td>
+            <button type="button" class="btn btn-default boja" onclick="location.href='@Url.Action("Edit", new { id=item.SobaID })'">Uredi</button>
+            <button type="button" class="btn btn-default boja" onclick="location.href='@Url.Action("Details", new { id=item.SobaID })'">Detalji</button>
+            <button type="button" class="btn btn-default boja" onclick="location.href='@Url.Action("Delete", new { id=item.SobaID })'">Izbriši</button>
+        </td>
+    </tr>
+}
+
+</table>
+
+<style type="text/css">
+    .novaSoba {
+        background: #B22222;
+        color: #fff;
+        padding: 6px 12px 6px 12px;
+        margin-top: 30px;
+    }
+
+    .udalji {
+        margin-top: 20px;
+    }
+
+    .boja {
+        background: #B22222;
+        color: #fff;
+    }
+</style>

@@ -1,0 +1,137 @@
+﻿@model IEnumerable<HotelApp.Models.Gost>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gosti</h2>
+
+<div>
+    <button type="button" class="boja" onclick="location.href='@Url.Action("Index", "CheckIns")'">Check in</button>
+    <button type="button" class="boja" onclick="location.href='@Url.Action("Index", "Zaduzenjas")'">Zaduženja</button>
+    <button type="button" class="boja" onclick="location.href='@Url.Action("Index", "LokacijaSobes")'">Lokacija sobe</button>
+    <button type="button" class="boja" onclick="location.href='@Url.Action("Index", "Sobas")'">Sobe</button>
+    <button type="button" class="boja" onclick="location.href='@Url.Action("Index", "Rezervacijas")'">Rezervacije</button>
+    <button type="button" class="boja" onclick="location.href='@Url.Action("Index", "CheckOuts")'">Check out</button>
+
+</div>
+
+<style type="text/css">
+    .boja {
+        background: #B22222;
+        color: #fff;
+        padding: 6px 12px 6px 12px;
+        margin-top: 30px;
+    }
+
+    .noviGost {
+        background: #B22222;
+        color: #fff;
+        padding: 6px 12px 6px 12px;
+        margin-top: 30px;
+    }
+    .udalji {
+        margin-top: 20px;
+    }
+    .scroll {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .pomjeriButtonsZaUredjivanje{
+        margin-top: -5px;
+    }
+</style>
+<div>
+    <button type="button" class="noviGost" onclick="location.href='@Url.Action("Create", "Gosts")'">Dodajte novog gosta</button>
+</div>
+<div class="scroll">
+    <table class="table udalji">
+        <tbody>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Prezime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    Broj telefona
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Adresa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Grad)
+                </th>
+                <th>
+                    Država
+                </th>
+                <th>
+                    Broj lične karte
+                </th>
+                <th>
+                    Broj pasoša
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <th></th>
+            </tr>
+        </tbody>
+
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prezime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrojTelefona)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adresa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Drzava)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrojLicneKarte)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrojPasosa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default boja pomjeriButtonsZaUredjivanje" onclick="location.href='@Url.Action("Edit", new { id=item.GostID })'">Uredi</button>
+                        <button type="button" class="btn btn-default boja pomjeriButtonsZaUredjivanje" onclick="location.href='@Url.Action("Details", new { id=item.GostID })'">Detalji</button>
+                        <button type="button" class="btn btn-default boja pomjeriButtonsZaUredjivanje" onclick="location.href='@Url.Action("Delete", new { id=item.GostID })'">Izbriši</button>
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+

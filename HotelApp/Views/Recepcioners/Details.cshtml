@@ -1,0 +1,56 @@
+﻿@model HotelApp.Models.Recepcioner
+
+@{
+    ViewBag.Title = "Detalji";
+}
+
+<h2>Detalji</h2>
+
+<div>
+    <h4>Recepcioner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ImeRecepcionera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImeRecepcionera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrezimeRecepcionera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrezimeRecepcionera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button type="button" class="btn btn-default bojaRecepcioner" onclick="location.href='@Url.Action("Index", "Recepcioners")'">Vrati se nazad</button>
+</p>
+
+<style type="text/css">
+    .bojaRecepcioner {
+        background-color: #B22222;
+        color: white;
+    }
+</style>

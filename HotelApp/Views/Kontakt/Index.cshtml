@@ -1,0 +1,63 @@
+﻿@model IEnumerable<HotelApp.Models.Kontakt>
+
+@{
+    ViewBag.Title = "Kontakt";
+}
+
+<h2>Vaši komentari</h2>
+<p>Ukoliko komentar bude sadržavao neprimjerene riječi biti će izbrisan od strane admina stranice! </p>
+<button type="button" class="btn btn-default boja" onclick="location.href='@Url.Action("Create", "Kontakt")'"> Napišite nam Vaše mišljenje o hotelu </button>
+
+<style type="text/css">
+    .boja {
+        background: #B22222;
+        color: #fff;
+        padding: 6px 12px 6px 12px;
+    }
+
+    .udalji{
+        margin-top: 20px;
+    }
+</style>
+
+<div class="scroll">
+    <table class="table udalji">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Poruka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefon)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Poruka)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefon)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default boja" onclick="location.href='@Url.Action("Details", new { id=item.KontaktID })'">Detalji</button> |
+                    <button type="button" class="btn btn-default boja" onclick="location.href='@Url.Action("Izbrisi", new { id=item.KontaktID })'">Izbriši</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

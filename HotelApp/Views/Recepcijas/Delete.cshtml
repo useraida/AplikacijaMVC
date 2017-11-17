@@ -1,0 +1,55 @@
+﻿@model HotelApp.Models.Recepcija
+
+@{
+    ViewBag.Title = "Izbriši";
+}
+
+<h2>Izbriši</h2>
+
+<h3>Da li ste sigurni da želite izbrisati ove podatke?</h3>
+<div>
+    <h4>Recepcija</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BrojRezervacija)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojRezervacija)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UkupnaZarada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UkupnaZarada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DnevniIzvjestaj.DnevniIzvjestajID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DnevniIzvjestaj.DnevniIzvjestajID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Izbriši" class="btn btn-default boja" /> |
+            <button type="button" class="btn btn-default boja" onclick="location.href='@Url.Action("Index", "Recepcijas")'">Vrati se nazad</button>
+        </div>
+    }
+</div>
+
+<style type="text/css">
+    .boja {
+        background-color: #B22222;
+        color: white;
+    }
+</style>

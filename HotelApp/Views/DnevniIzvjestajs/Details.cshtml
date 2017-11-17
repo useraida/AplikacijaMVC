@@ -1,0 +1,47 @@
+﻿@model HotelApp.Models.DnevniIzvjestaj
+
+@{
+    ViewBag.Title = "Detalji";
+}
+
+<h2>Detalji</h2>
+
+<div>
+    <h4>Dnevni izvještaj</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rezervacija.RezervacijaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rezervacija.RezervacijaID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Recepcioner.ImeRecepcionera)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Recepcioner.ImeRecepcionera)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button type="button" class="btn btn-default bojaDnevniIzvjestaj" onclick="location.href='@Url.Action("Index", "DnevniIzvjestajs")'">Vrati se nazad</button>
+</p>
+
+<style type="text/css">
+    .bojaDnevniIzvjestaj {
+        background-color: #B22222;
+        color: white;
+    }
+</style>

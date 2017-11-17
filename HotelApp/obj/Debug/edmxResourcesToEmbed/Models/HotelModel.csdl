@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CheckIn">
+    <Key>
+      <PropertyRef Name="CheckInID" />
+    </Key>
+    <Property Name="CheckInID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ZaduzenjaID" Type="Int32" Nullable="false" />
+    <Property Name="DatumPrijave" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Zaduzenja" Relationship="Self.FK_CheckIn_Zaduzenja" FromRole="CheckIn" ToRole="Zaduzenja" />
+    <NavigationProperty Name="Rezervacija" Relationship="Self.FK_Rezervacija_CheckIn" FromRole="CheckIn" ToRole="Rezervacija" />
+  </EntityType>
+  <EntityType Name="CheckOut">
+    <Key>
+      <PropertyRef Name="CheckOutID" />
+    </Key>
+    <Property Name="CheckOutID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DatumOdjave" Type="DateTime" Precision="0" />
+    <Property Name="DodatniTrosak" Type="Double" />
+    <Property Name="UkupnaCijena" Type="Double" />
+    <Property Name="NacinPlacanja" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Rezervacija" Relationship="Self.FK_Rezervacija_CheckOut" FromRole="CheckOut" ToRole="Rezervacija" />
+  </EntityType>
+  <EntityType Name="DnevniIzvjestaj">
+    <Key>
+      <PropertyRef Name="DnevniIzvjestajID" />
+    </Key>
+    <Property Name="DnevniIzvjestajID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Datum" Type="DateTime" Precision="3" />
+    <Property Name="RezervacijaID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Rezervacija" Relationship="Self.FK_DnevniIzvjestaj_Rezervacija" FromRole="DnevniIzvjestaj" ToRole="Rezervacija" />
+    <NavigationProperty Name="Recepcija" Relationship="Self.FK_Recepcija_DnevniIzvjestaj" FromRole="DnevniIzvjestaj" ToRole="Recepcija" />
+    <Property Name="RecepcionerID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Recepcioner" Relationship="HotelModel.FK_DnevniIzvjestaj_Recepcioner" FromRole="DnevniIzvjestaj" ToRole="Recepcioner" />
+  </EntityType>
+  <EntityType Name="Gost">
+    <Key>
+      <PropertyRef Name="GostID" />
+    </Key>
+    <Property Name="GostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BrojTelefona" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Adresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Grad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Drzava" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="BrojLicneKarte" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="BrojPasosa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Rezervacija" Relationship="Self.FK_Rezervacija_Gost" FromRole="Gost" ToRole="Rezervacija" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HotelT">
+    <Key>
+      <PropertyRef Name="HotelTID" />
+    </Key>
+    <Property Name="HotelTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NazivHotela" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Vlasnik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RecepcijaID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Recepcija" Relationship="Self.FK_HotelT_Recepcija" FromRole="HotelT" ToRole="Recepcija" />
+  </EntityType>
+  <EntityType Name="LokacijaSobe">
+    <Key>
+      <PropertyRef Name="LokacijaSobeID" />
+    </Key>
+    <Property Name="LokacijaSobeID" Type="Int32" Nullable="false" />
+    <Property Name="SpratSobe" Type="Int32" />
+    <Property Name="BrojSobe" Type="Int32" />
+    <Property Name="Orijentacija" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Soba" Relationship="Self.FK_Soba_LokacijaSobe" FromRole="LokacijaSobe" ToRole="Soba" />
+  </EntityType>
+  <EntityType Name="Recepcija">
+    <Key>
+      <PropertyRef Name="RecepcijaID" />
+    </Key>
+    <Property Name="RecepcijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DnevniIzvjestajID" Type="Int32" Nullable="false" />
+    <Property Name="BrojRezervacija" Type="Int32" />
+    <Property Name="UkupnaZarada" Type="Double" />
+    <NavigationProperty Name="DnevniIzvjestaj" Relationship="Self.FK_Recepcija_DnevniIzvjestaj" FromRole="Recepcija" ToRole="DnevniIzvjestaj" />
+    <NavigationProperty Name="HotelT" Relationship="Self.FK_HotelT_Recepcija" FromRole="Recepcija" ToRole="HotelT" />
+  </EntityType>
+  <EntityType Name="Rezervacija">
+    <Key>
+      <PropertyRef Name="RezervacijaID" />
+    </Key>
+    <Property Name="RezervacijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GostID" Type="Int32" Nullable="false" />
+    <Property Name="SobaID" Type="Int32" Nullable="false" />
+    <Property Name="CheckInID" Type="Int32" Nullable="false" />
+    <Property Name="CheckOutID" Type="Int32" Nullable="false" />
+    <Property Name="BrojOdraslih" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BrojDjece" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TipPonude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DodatneInformacije" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CheckIn" Relationship="Self.FK_Rezervacija_CheckIn" FromRole="Rezervacija" ToRole="CheckIn" />
+    <NavigationProperty Name="CheckOut" Relationship="Self.FK_Rezervacija_CheckOut" FromRole="Rezervacija" ToRole="CheckOut" />
+    <NavigationProperty Name="DnevniIzvjestaj" Relationship="Self.FK_DnevniIzvjestaj_Rezervacija" FromRole="Rezervacija" ToRole="DnevniIzvjestaj" />
+    <NavigationProperty Name="Gost" Relationship="Self.FK_Rezervacija_Gost" FromRole="Rezervacija" ToRole="Gost" />
+    <NavigationProperty Name="Soba" Relationship="Self.FK_Rezervacija_Soba" FromRole="Rezervacija" ToRole="Soba" />
+  </EntityType>
+  <EntityType Name="Soba">
+    <Key>
+      <PropertyRef Name="SobaID" />
+    </Key>
+    <Property Name="SobaID" Type="Int32" Nullable="false" />
+    <Property Name="TipSobe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="StatusSobe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LokacijaSobeID" Type="Int32" Nullable="false" />
+    <Property Name="DodatneInformacije" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LokacijaSobe" Relationship="Self.FK_Soba_LokacijaSobe" FromRole="Soba" ToRole="LokacijaSobe" />
+    <NavigationProperty Name="Rezervacija" Relationship="Self.FK_Rezervacija_Soba" FromRole="Soba" ToRole="Rezervacija" />
+  </EntityType>
+  <EntityType Name="Zaduzenja">
+    <Key>
+      <PropertyRef Name="ZaduzenjaID" />
+    </Key>
+    <Property Name="ZaduzenjaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VrstaZaduzenja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Cijena" Type="Double" />
+    <NavigationProperty Name="CheckIn" Relationship="Self.FK_CheckIn_Zaduzenja" FromRole="Zaduzenja" ToRole="CheckIn" />
+  </EntityType>
+  <Association Name="FK_CheckIn_Zaduzenja">
+    <End Role="Zaduzenja" Type="Self.Zaduzenja" Multiplicity="1" />
+    <End Role="CheckIn" Type="Self.CheckIn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zaduzenja">
+        <PropertyRef Name="ZaduzenjaID" />
+      </Principal>
+      <Dependent Role="CheckIn">
+        <PropertyRef Name="ZaduzenjaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervacija_CheckIn">
+    <End Role="CheckIn" Type="Self.CheckIn" Multiplicity="1" />
+    <End Role="Rezervacija" Type="Self.Rezervacija" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CheckIn">
+        <PropertyRef Name="CheckInID" />
+      </Principal>
+      <Dependent Role="Rezervacija">
+        <PropertyRef Name="CheckInID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervacija_CheckOut">
+    <End Role="CheckOut" Type="Self.CheckOut" Multiplicity="1" />
+    <End Role="Rezervacija" Type="Self.Rezervacija" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CheckOut">
+        <PropertyRef Name="CheckOutID" />
+      </Principal>
+      <Dependent Role="Rezervacija">
+        <PropertyRef Name="CheckOutID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DnevniIzvjestaj_Rezervacija">
+    <End Role="Rezervacija" Type="Self.Rezervacija" Multiplicity="1" />
+    <End Role="DnevniIzvjestaj" Type="Self.DnevniIzvjestaj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rezervacija">
+        <PropertyRef Name="RezervacijaID" />
+      </Principal>
+      <Dependent Role="DnevniIzvjestaj">
+        <PropertyRef Name="RezervacijaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recepcija_DnevniIzvjestaj">
+    <End Role="DnevniIzvjestaj" Type="Self.DnevniIzvjestaj" Multiplicity="1" />
+    <End Role="Recepcija" Type="Self.Recepcija" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevniIzvjestaj">
+        <PropertyRef Name="DnevniIzvjestajID" />
+      </Principal>
+      <Dependent Role="Recepcija">
+        <PropertyRef Name="DnevniIzvjestajID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervacija_Gost">
+    <End Role="Gost" Type="Self.Gost" Multiplicity="1" />
+    <End Role="Rezervacija" Type="Self.Rezervacija" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gost">
+        <PropertyRef Name="GostID" />
+      </Principal>
+      <Dependent Role="Rezervacija">
+        <PropertyRef Name="GostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelT_Recepcija">
+    <End Role="Recepcija" Type="Self.Recepcija" Multiplicity="1" />
+    <End Role="HotelT" Type="Self.HotelT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recepcija">
+        <PropertyRef Name="RecepcijaID" />
+      </Principal>
+      <Dependent Role="HotelT">
+        <PropertyRef Name="RecepcijaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Soba_LokacijaSobe">
+    <End Role="LokacijaSobe" Type="Self.LokacijaSobe" Multiplicity="1" />
+    <End Role="Soba" Type="Self.Soba" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LokacijaSobe">
+        <PropertyRef Name="LokacijaSobeID" />
+      </Principal>
+      <Dependent Role="Soba">
+        <PropertyRef Name="LokacijaSobeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervacija_Soba">
+    <End Role="Soba" Type="Self.Soba" Multiplicity="1" />
+    <End Role="Rezervacija" Type="Self.Rezervacija" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Soba">
+        <PropertyRef Name="SobaID" />
+      </Principal>
+      <Dependent Role="Rezervacija">
+        <PropertyRef Name="SobaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HotelEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CheckIn" EntityType="Self.CheckIn" />
+    <EntitySet Name="CheckOut" EntityType="Self.CheckOut" />
+    <EntitySet Name="DnevniIzvjestaj" EntityType="Self.DnevniIzvjestaj" />
+    <EntitySet Name="Gost" EntityType="Self.Gost" />
+    <EntitySet Name="HotelT" EntityType="Self.HotelT" />
+    <EntitySet Name="LokacijaSobe" EntityType="Self.LokacijaSobe" />
+    <EntitySet Name="Recepcija" EntityType="Self.Recepcija" />
+    <EntitySet Name="Rezervacija" EntityType="Self.Rezervacija" />
+    <EntitySet Name="Soba" EntityType="Self.Soba" />
+    <EntitySet Name="Zaduzenja" EntityType="Self.Zaduzenja" />
+    <AssociationSet Name="FK_CheckIn_Zaduzenja" Association="Self.FK_CheckIn_Zaduzenja">
+      <End Role="Zaduzenja" EntitySet="Zaduzenja" />
+      <End Role="CheckIn" EntitySet="CheckIn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervacija_CheckIn" Association="Self.FK_Rezervacija_CheckIn">
+      <End Role="CheckIn" EntitySet="CheckIn" />
+      <End Role="Rezervacija" EntitySet="Rezervacija" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervacija_CheckOut" Association="Self.FK_Rezervacija_CheckOut">
+      <End Role="CheckOut" EntitySet="CheckOut" />
+      <End Role="Rezervacija" EntitySet="Rezervacija" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DnevniIzvjestaj_Rezervacija" Association="Self.FK_DnevniIzvjestaj_Rezervacija">
+      <End Role="Rezervacija" EntitySet="Rezervacija" />
+      <End Role="DnevniIzvjestaj" EntitySet="DnevniIzvjestaj" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recepcija_DnevniIzvjestaj" Association="Self.FK_Recepcija_DnevniIzvjestaj">
+      <End Role="DnevniIzvjestaj" EntitySet="DnevniIzvjestaj" />
+      <End Role="Recepcija" EntitySet="Recepcija" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervacija_Gost" Association="Self.FK_Rezervacija_Gost">
+      <End Role="Gost" EntitySet="Gost" />
+      <End Role="Rezervacija" EntitySet="Rezervacija" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelT_Recepcija" Association="Self.FK_HotelT_Recepcija">
+      <End Role="Recepcija" EntitySet="Recepcija" />
+      <End Role="HotelT" EntitySet="HotelT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Soba_LokacijaSobe" Association="Self.FK_Soba_LokacijaSobe">
+      <End Role="LokacijaSobe" EntitySet="LokacijaSobe" />
+      <End Role="Soba" EntitySet="Soba" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervacija_Soba" Association="Self.FK_Rezervacija_Soba">
+      <End Role="Soba" EntitySet="Soba" />
+      <End Role="Rezervacija" EntitySet="Rezervacija" />
+    </AssociationSet>
+    <EntitySet Name="Recepcioner" EntityType="HotelModel.Recepcioner" />
+    <AssociationSet Name="FK_DnevniIzvjestaj_Recepcioner" Association="HotelModel.FK_DnevniIzvjestaj_Recepcioner">
+      <End Role="Recepcioner" EntitySet="Recepcioner" />
+      <End Role="DnevniIzvjestaj" EntitySet="DnevniIzvjestaj" />
+    </AssociationSet>
+    <EntitySet Name="Kontakt" EntityType="HotelModel.Kontakt" />
+    <EntitySet Name="Slika" EntityType="HotelModel.Slika" />
+  </EntityContainer>
+  <EntityType Name="Recepcioner">
+    <Key>
+      <PropertyRef Name="RecepcionerID" />
+    </Key>
+    <Property Name="RecepcionerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImeRecepcionera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrezimeRecepcionera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DnevniIzvjestaj" Relationship="HotelModel.FK_DnevniIzvjestaj_Recepcioner" FromRole="Recepcioner" ToRole="DnevniIzvjestaj" />
+  </EntityType>
+  <Association Name="FK_DnevniIzvjestaj_Recepcioner">
+    <End Type="HotelModel.Recepcioner" Role="Recepcioner" Multiplicity="1" />
+    <End Type="HotelModel.DnevniIzvjestaj" Role="DnevniIzvjestaj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recepcioner">
+        <PropertyRef Name="RecepcionerID" />
+      </Principal>
+      <Dependent Role="DnevniIzvjestaj">
+        <PropertyRef Name="RecepcionerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Kontakt">
+    <Key>
+      <PropertyRef Name="KontaktID" />
+    </Key>
+    <Property Name="KontaktID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Poruka" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Slika">
+    <Key>
+      <PropertyRef Name="SlikaID" />
+    </Key>
+    <Property Name="SlikaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SlikaStaza" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ThumbStaza" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DatumKreiranja" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>
